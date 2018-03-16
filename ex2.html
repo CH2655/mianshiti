@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>index</title>
+	<meta name="keywords" content="">
+	<meta name="description" content="">
+	<script src="http://code.jquery.com/jquery-1.8.3.min.js"></script>
+	<style>
+		@charset "utf-8";
+		/*=========================Reset_start==========================*/
+		body,h1,h2,h3,h4,h5,h6,div,p,dl,dt,dd,ol,ul,li,form,table,th,td,a,img,span,strong,var,em,input,textarea,select,option{margin: 0; padding: 0;}
+		html,body{font-family:"Times New Roman", Times, serif; font-size: 14px; text-align: left;}
+		ul,ol{list-style: none;}
+		img{border: 0;}
+		input,select,textarea{outline:0;}
+		textarea{resize:none;}
+		table{border-collapse: collapse; border-spacing: 0;}
+		th,strong,var,em{font-weight: normal; font-style: normal;}
+		a{text-decoration: none;}
+		a:link,a:visited,a:hover,a:active{text-decoration:none; border: 0px;} 
+		a:hover{text-decoration: underline;}
+		/*==========================Reset_End===========================*/
+		.box{
+			overflow: hidden;
+		}
+		li{
+			float: left;
+			margin-top: 30px;
+			margin-left: 50px;
+			overflow: hidden;
+			/*width: 200px;*/
+		}
+		p{
+			float: left;
+		}
+		select{
+			width: 100px;
+			float: left;
+		}
+	</style>
+</head>
+<body>
+	<ul class="box">
+		<li>
+			<p>选项1</p>
+			<select name="" id="select_01">
+			</select>
+		</li>
+		<li>
+			<p>选项2</p>
+			<select name="" id="select_02">
+			</select>
+		</li>
+		<li>
+			<p>选项3</p>
+			<select name="" id="select_03">
+			</select>
+		</li>
+	</ul>
+</body>
+<script>
+	$(function () {
+		var arr_01=[1,2,3,4,5,6,7,8,9,10];
+		var arr_02=[];
+		for (var i = 0; i < arr_01.length; i++) {
+			$('#select_01').append('<option value="'+arr_01[i]+'">'+arr_01[i]+'</option>')
+		}
+		$("#select_01").change(function(){
+			var x=$(this).val();
+			arr_02=[].concat(arr_01);
+			$.each(arr_02,function(index,item){
+	            // index是索引值（即下标）   item是每次遍历得到的值；
+				if(item==x){
+					arr_02.splice(index,1);
+				}
+			});
+			console.log(arr_01);
+			console.log(arr_02);
+
+			$('#select_02').empty();
+			$('#select_03').empty();
+			for (var i = 0; i < arr_02.length; i++) {
+				$('#select_02').append('<option value="'+arr_02[i]+'">'+arr_02[i]+'</option>')
+			}
+	    });
+		$("#select_02").change(function(){
+			var x=$(this).val();
+			$.each(arr_02,function(index,item){
+	            // index是索引值（即下标）   item是每次遍历得到的值；
+				if(item==x){
+					arr_02.splice(index,1);
+				}
+			});
+			console.log(arr_02);
+
+
+			$('#select_03').empty();
+			for (var i = 0; i < arr_02.length; i++) {
+				$('#select_03').append('<option value="'+arr_02[i]+'">'+arr_02[i]+'</option>')
+			}
+	    });
+
+	})
+</script>
+</html>
